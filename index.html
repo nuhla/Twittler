@@ -1,27 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-  </head>
-  <body>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="logo">
+                <img src="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-vector-png-clipart-library-518.png">
+            </div>
+            <div id="home">
+                <h2> Home </h2></div>
+
+            <div id="right">
+
+                <button id="refBtn">Refresh</button>
+
+            </div>
+        </div>
+
+        <div id="contenet">
+
+        </div>
+
+    </div>
     <script>
+      
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        $(document).ready(function() {
+            var $contenet = $('#contenet');
+            //$body.html('');
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+            var index = streams.home.length - 1;
+            while (index >= 0) {
+                var tweet = streams.home[index];
+                var $tweet = $('<div class="tweet"></div> <br>');
+                $tweet.append($('<a href="#" class="tweetINFO" id="'+ tweet.user+'">'+'@'+tweet.user +'</a> ' +'<p>'+ tweet.message+',before: '+formatTime(streams.home[index].created_at)+'</p>'))
 
-      });
+                //$tweet.text('@' + tweet.user + ': ' + tweet.message);
+                $tweet.appendTo($contenet);
+                index -= 1;
+            }
+    $('.tweetINFO').click(function(e){
+            var user1=e.target.id
+            var $contenet = $('#contenet');
+            $contenet.html('');
+            // $contenet.append()
+           var index = streams.users[user1].length - 1;
+           
+            while (index >= 0) {
+              console.log(streams.users[user1][index])
+                var $tweet = $('<div class="tweet"></div> <br>');
+                $tweet.append($('<a href="#" class="tweetINFO '+ tweet.user+'">'+'@'+user1 +'</a> ' +'<p>'+ streams.users[user1][index].message+" ,before: "+formatTime(streams.users[user1][index].created_at)+'</p>'))
+                $tweet.appendTo($contenet);
+                index -= 1;
+            }
+      $("#refBtn").click(function(){
+        location.reload();
+      })
+       
+
+        })
+        });
+
+        function formatTime (obj) {
+            return (obj.getMinutes()+" minutes")
+           }
 
     </script>
-  </body>
+</body>
+
 </html>

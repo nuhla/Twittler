@@ -1,0 +1,70 @@
+body{
+width: 100%;
+height: 100%;
+background-color: #dfe4ea;
+}
+
+#header {
+font-family:  Verdana;
+width: 100%;
+height: 2%;
+text-align: center;
+position: relative;
+background-color: #a4b0be;	
+}
+#logo img{
+	width: 30px;
+}
+#logo {
+position: absolute;
+ left: 16px;
+}
+#home {
+position: absolute;
+left: 0;
+top: -20px;
+width: 100%;
+text-align: center;
+}
+#home h2{
+	text-align: center;
+}
+#right {
+	position: absolute;
+ right: 16px;
+}
+#contenet {
+	font-family: Courier;
+	position: absolute;
+    margin-top: 40px;
+    border: 1.5px solid white;
+    width: 100%;
+    text-align: center;
+    background-color: #b4cbe3;
+}
+#main {
+	position: absolute
+	width: 80%;
+	left: 100px;
+}
+
+.tweet a{
+	 padding: 15px 10px 0px 10px;
+	font-weight: bold;
+	color: #3280d9;
+	
+}
+.tweet p{
+text-align: center;
+	font-weight: bold;
+	color: #3250d9;
+}
+.tweet{
+	display: flex;
+	border-bottom: 0.5px solid black;
+}
+#refBtn{
+	background-color: lightgreen;
+	border-radius: 50%;
+	font-size: 15px;
+}
