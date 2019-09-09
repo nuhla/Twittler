@@ -13,12 +13,14 @@
             <div id="logo">
                 <img src="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-vector-png-clipart-library-518.png">
             </div>
-            <div id="home">
-                <h2> Home </h2></div>
+            <div id="Twetter">
+                <h2> Home </h2>
+            </div>
 
             <div id="right">
 
                 <button id="refBtn">Refresh</button>
+                <input type="" name="">
 
             </div>
         </div>
@@ -38,7 +40,7 @@
             var index = streams.home.length - 1;
             while (index >= 0) {
                 var tweet = streams.home[index];
-                var $tweet = $('<div class="tweet"></div> <br>');
+                var $tweet = $('<div class="tweet"></div> ');
                 $tweet.append($('<a href="#" class="tweetINFO" id="'+ tweet.user+'">'+'@'+tweet.user +'</a> ' +'<p>'+ tweet.message+',before: '+formatTime(streams.home[index].created_at)+'</p>'))
 
                 //$tweet.text('@' + tweet.user + ': ' + tweet.message);
@@ -46,6 +48,7 @@
                 index -= 1;
             }
     $('.tweetINFO').click(function(e){
+            var nuhla= $(this);
             var user1=e.target.id
             var $contenet = $('#contenet');
             $contenet.html('');
@@ -53,9 +56,9 @@
            var index = streams.users[user1].length - 1;
            
             while (index >= 0) {
-              console.log(streams.users[user1][index])
-                var $tweet = $('<div class="tweet"></div> <br>');
-                $tweet.append($('<a href="#" class="tweetINFO '+ tweet.user+'">'+'@'+user1 +'</a> ' +'<p>'+ streams.users[user1][index].message+" ,before: "+formatTime(streams.users[user1][index].created_at)+'</p>'))
+              console.log(nuhla)
+                var $tweet = $('<div class="tweet"></div> ');
+                $tweet.append($('<p class="tweetINFO '+ tweet.user+'">'+'@'+user1 +'</p> ' +'<p>'+ streams.users[user1][index].message+" ,before: "+formatTime(streams.users[user1][index].created_at)+'</p>'))
                 $tweet.appendTo($contenet);
                 index -= 1;
             }
