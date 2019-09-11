@@ -6,34 +6,45 @@
     <script src="data_generator.js"></script>
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
-
-<body>
-    <div id="main">
-        <div id="header">
-            <div id="logo">
+<div id="header">
+              <div id="logo">
                 <img src="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-vector-png-clipart-library-518.png">
+                <button id="refBtn"> refresh</button>
             </div>
-            <div id="Twetter">
-                <h2> Home </h2>
+                <h1 style="color: white;"> Welcom to Our Tweeter </h1>
+                <div id="right">
+                  
+                </div>
+        
+            
+          </div>
+<body>
+  <div>
+     
+  <div class="insertComment">
+   
+            <div id="addTweet">
+              <p style="font-size:3em; color: #083d54">You Can add your tweets from her:</p>
+              <p>insert User Name:</p>
+              <input type="checkbox" value="false" id="isVistor">Is a Visitor</input>
+              <input placeholder="Insert Your Name" id ="Utxt" style="width: 90% ;" type="text">
+              <p>insert your Tweet</p>
+              <input placeholder="Insert Your tweet" id ="Ttxt" style="width: 90% ; height: 50px;">
+              <button id="addTweet"> Tweet</button>
             </div>
-
-            <div id="right">
-
-                <button id="refBtn">Refresh</button>
-                <input type="" name="">
-
-            </div>
-        </div>
+                 
+  </div>
+    <div id="mainContent">
 
         <div id="contenet">
-
         </div>
-
+    </div>
     </div>
     <script>
       
 
         $(document).ready(function() {
+          $('#isVistor').val();
             var $contenet = $('#contenet');
             //$body.html('');
 
@@ -47,32 +58,60 @@
                 $tweet.appendTo($contenet);
                 index -= 1;
             }
+     /// a function to gather the tweets of the user and display it in one page       
     $('.tweetINFO').click(function(e){
             var nuhla= $(this);
-            var user1=e.target.id
+            var user1=e.target.id 
             var $contenet = $('#contenet');
             $contenet.html('');
             // $contenet.append()
            var index = streams.users[user1].length - 1;
            
             while (index >= 0) {
-              console.log(nuhla)
+              console.log(tweet)
                 var $tweet = $('<div class="tweet"></div> ');
                 $tweet.append($('<p class="tweetINFO '+ tweet.user+'">'+'@'+user1 +'</p> ' +'<p>'+ streams.users[user1][index].message+" ,before: "+formatTime(streams.users[user1][index].created_at)+'</p>'))
                 $tweet.appendTo($contenet);
                 index -= 1;
             }
       $("#refBtn").click(function(){
+        debugger
+        
         location.reload();
       })
        
 
         })
-        });
 
-        function formatTime (obj) {
-            return (obj.getMinutes()+" minutes")
+// a function to detect if the user is a visitor or not and enable the user name input and disable it
+    $('#isVistor').change(function(){
+      if($('#isVistor').prop('checked')){
+        $('#Utxt').attr("disabled",true);
+        $('#Utxt').css('background-color','#ccccb3')
+      }else
+      {
+        $('#Utxt').attr("disabled",false);
+        $('#Utxt').css('background-color','white')
+      }
+
+  })
+    
+});
+
+//a function to formaye the time in the simplest way 
+ function formatTime (obj) {
+    return (obj.getMinutes()+" minutes")
+   }
+
+           function addTweet()
+           {
+            var NewUser = $('#Utxt').val();
+            var NewTweet=$('#Ttxt').val();
+            var isAvisitor=$('#isVistor').prop('checked');
+
+            
            }
+
 
     </script>
 </body>
