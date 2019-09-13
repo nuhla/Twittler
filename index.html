@@ -17,20 +17,21 @@
                 </div>
         
             
-          </div>
+</div>
 <body>
   <div>
      
   <div class="insertComment">
    
             <div id="addTweet">
-              <p style="font-size:3em; color: #083d54">You Can add your tweets from her:</p>
-              <p>insert User Name:</p>
-              <input type="checkbox" value="false" id="isVistor">Is a Visitor</input>
-              <input placeholder="Insert Your Name" id ="Utxt" style="width: 90% ;" type="text">
+              <div id="usersImgs">
+            </div>
+            <p id="UserName">Visitor</p>
+            <p style="font-size:3em; color: #083d54">You Can add your tweets from her:</p>
+            
               <p>insert your Tweet</p>
               <input placeholder="Insert Your tweet" id ="Ttxt" style="width: 90% ; height: 50px;">
-              <button id="addTweet"> Tweet</button>
+              <button class="addTweet"> Tweet</button>
             </div>
                  
   </div>
@@ -43,11 +44,47 @@
     <script>
       
 
+      // Array of imges Url
+      var ImgsArray=["dummy-user.png","190669.PNG",
+      "dummy-user.png","asl-interpreter-profiles.png",
+      "esther.png",  "images.png"]
+      // var User and Tweet;
+      var currentUser ="Visitor";
+      var currentTweet=[];
+
+
         $(document).ready(function() {
-          $('#isVistor').val();
+
+          // a variable to get UserImgs Div tage
+          var UsersImgTag=$('#usersImgs');
+          //  a variable to define the nuber of users
+          var  Usersount=window.users.length-1;
+
+        
+         
+
+          // loop throw the numbers of users 
+          while(Usersount>=0){
+          //create a new button tag and append it to UserImgs tag 
+           UsersImgTag.append('<button id="'+window.users[Usersount]+'"><img src="resoures\\loginImg\\'+ImgsArray[Usersount] +'"></button>');
+           console.log($('#'+window.users[Usersount]));
+           debugger
+            // assigne a click event yo each  user button
+            $('#'+window.users[Usersount]).click(function(){
+              //if clicked the paragrph of user name value will chang to the user name
+              $("#UserName").text(this.id);
+              currentUser=this.id;
+              //console.log(currentUser );
+           
+            });
+            Usersount--;
+          }
+
+          //add tweet Click Event tothe Buuton
+        
+        
             var $contenet = $('#contenet');
             //$body.html('');
-
             var index = streams.home.length - 1;
             while (index >= 0) {
                 var tweet = streams.home[index];
@@ -69,37 +106,40 @@
            
             while (index >= 0) {
               console.log(tweet)
+              debugger
                 var $tweet = $('<div class="tweet"></div> ');
                 $tweet.append($('<p class="tweetINFO '+ tweet.user+'">'+'@'+user1 +'</p> ' +'<p>'+ streams.users[user1][index].message+" ,before: "+formatTime(streams.users[user1][index].created_at)+'</p>'))
                 $tweet.appendTo($contenet);
                 index -= 1;
             }
-      $("#refBtn").click(function(){
-        debugger
-        
+      $("#refBtn").click(function(){  
         location.reload();
       })
        
 
         })
 
-// a function to detect if the user is a visitor or not and enable the user name input and disable it
-    $('#isVistor').change(function(){
-      if($('#isVistor').prop('checked')){
-        $('#Utxt').attr("disabled",true);
-        $('#Utxt').css('background-color','#ccccb3')
-      }else
-      {
-        $('#Utxt').attr("disabled",false);
-        $('#Utxt').css('background-color','white')
-      }
-
-  })
+ 
     
 });
+ $('.addTweet').click(function(){
+            debugger
+              var currentTweet =$('#Ttxt').val();
+              var created_at=new Date();
 
+             if(currentUser !=="" && $('#Ttxt').val()!==""){
+              console.log(streams.users[currentUser])
+              streams.users[currentUser].push({user:currentUser, message:$('#Ttxt').val(), created_at:new Date()});
+
+                 var $tweet = $('<div class="tweet"></div> ');
+                $tweet.append($('<a href="#" class="tweetINFO" id="'+ currentUser+'">'+'@'+currentUser +'</a> ' +'<p>'+ currentTweet+" ,before: "+formatTime(created_at)+'</p>'))
+               $('#contenet').prepend( $tweet);
+              }
+          });
+          
 //a function to formaye the time in the simplest way 
  function formatTime (obj) {
+
     return (obj.getMinutes()+" minutes")
    }
 
@@ -108,12 +148,15 @@
             var NewUser = $('#Utxt').val();
             var NewTweet=$('#Ttxt').val();
             var isAvisitor=$('#isVistor').prop('checked');
+            var dateCreated=Date.now();
 
             
            }
 
 
     </script>
+
+
 </body>
 
 </html>

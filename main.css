@@ -23,9 +23,33 @@ margin: 0;
 	
 	
 }
-#logo img{
-	width: 30px;
+#UserName{
+	 padding: 15px 10px 0px 10px;
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #0f5869;
 	opacity: 1;
+	font-family: Passion One,Rubik Mono One;
+
+}
+
+button{
+	border-width: 0;
+	background: none;
+}
+ img{
+	width: 50px;
+	opacity: 1;
+}
+.usersImgs{
+	position: relative;
+}
+.usersImg{
+	 overflow: hidden;
+	width: 50px;
+	opacity: 1;
+	border-width: 1;
+	border-color: white;
 }
 #logo {
 
