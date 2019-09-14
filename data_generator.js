@@ -7,6 +7,7 @@
 window.streams = {};
 streams.home = [];
 streams.users = {};
+streams.currentUser="visitor";
 streams.users.shawndrost = [];
 streams.users.sharksforcheap = [];
 streams.users.mracus = [];

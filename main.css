@@ -53,7 +53,16 @@ button{
 }
 #logo {
 
- left: 19px;
+
+position: fixed;
+right: 0;
+
+
+}
+#logo img{
+height:100px;
+width:100px;
+ 
 }
 #Twetter {
 position: absolute;
@@ -132,8 +141,8 @@ text-align: center;
 
 
 #refBtn{
-	
-	
+	width: auto;
+	height: auto;
 	font-size: 15px;
 	margin: 0 15px 0 20px;
 }

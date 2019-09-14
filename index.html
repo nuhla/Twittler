@@ -8,8 +8,8 @@
 </head>
 <div id="header">
               <div id="logo">
-                <img src="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-vector-png-clipart-library-518.png">
-                <button id="refBtn"> refresh</button>
+               <button id="refBtn"> <img src="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-vector-png-clipart-library-518.png"></button>
+               
             </div>
                 <h1 style="color: white;"> Welcom to Our Tweeter </h1>
                 <div id="right">
@@ -49,7 +49,7 @@
       "dummy-user.png","asl-interpreter-profiles.png",
       "esther.png",  "images.png"]
       // var User and Tweet;
-      var currentUser ="Visitor";
+      var currentUser ="visitor";
       var currentTweet=[];
 
 
@@ -80,7 +80,7 @@
             Usersount--;
           }
 
-          //add tweet Click Event tothe Buuton
+          //add tweet Click Event to the Button
         
         
             var $contenet = $('#contenet');
@@ -94,11 +94,39 @@
                 //$tweet.text('@' + tweet.user + ': ' + tweet.message);
                 $tweet.appendTo($contenet);
                 index -= 1;
+
             }
-     /// a function to gather the tweets of the user and display it in one page       
-    $('.tweetINFO').click(function(e){
-            var nuhla= $(this);
-            var user1=e.target.id 
+
+
+//console.log(myclickFunction(window.event ,"visitor
+  $(document).on("click", "a.tweetINFO" , function() { 
+
+     var thisTage= $(this);
+     var user1=thisTage[0]['id']; 
+     var $contenet = $('#contenet');
+     $contenet.html('');
+     // $contenet.append()
+    var index = streams.users[user1].length - 1;
+
+     while (index >= 0) {
+              
+      var $tweet = $('<div class="tweet"></div> ');
+       $tweet.append($('<p class="tweetINFO '+ tweet.user+'">'+'@'+user1 +'</p> ' +'<p>'+ streams.users[user1][index].message+" ,before: "+formatTime(streams.users[user1][index].created_at)+'</p>'))
+      $tweet.appendTo($contenet);
+      index -= 1;
+               // $('.tweetINFO').addEventListener('click', myclickFunction)
+     }
+
+     $contenet.append( '<button id="refBtn">  <img src="resoures\\loginImg\\back-button.png"></button>');
+  })
+
+     /// a function to gather the tweets of the user and display it in one page  
+
+    
+     function myclickFunction (){
+    debugger
+            //var nuhla= $(this);
+            var user1=window.currentUser
             var $contenet = $('#contenet');
             $contenet.html('');
             // $contenet.append()
@@ -106,23 +134,20 @@
            
             while (index >= 0) {
               console.log(tweet)
-              debugger
+            
                 var $tweet = $('<div class="tweet"></div> ');
                 $tweet.append($('<p class="tweetINFO '+ tweet.user+'">'+'@'+user1 +'</p> ' +'<p>'+ streams.users[user1][index].message+" ,before: "+formatTime(streams.users[user1][index].created_at)+'</p>'))
                 $tweet.appendTo($contenet);
                 index -= 1;
-            }
-      $("#refBtn").click(function(){  
+
+            }} 
+
+   $(document).on("click", "#refBtn",function(){  
         location.reload();
       })
-       
 
-        })
 
- 
-    
-});
- $('.addTweet').click(function(){
+$('.addTweet').click(function(){
             debugger
               var currentTweet =$('#Ttxt').val();
               var created_at=new Date();
@@ -134,8 +159,14 @@
                  var $tweet = $('<div class="tweet"></div> ');
                 $tweet.append($('<a href="#" class="tweetINFO" id="'+ currentUser+'">'+'@'+currentUser +'</a> ' +'<p>'+ currentTweet+" ,before: "+formatTime(created_at)+'</p>'))
                $('#contenet').prepend( $tweet);
+               window.streams.currentUser =currentUser;
+                
               }
           });
+ 
+    
+});
+ 
           
 //a function to formaye the time in the simplest way 
  function formatTime (obj) {
